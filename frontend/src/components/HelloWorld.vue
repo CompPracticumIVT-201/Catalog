@@ -1,41 +1,85 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
-  </div>
+
+ <header class="sticky">
+   <div class="container">
+     <div class="row">
+       <div class="col-3">
+         <div class="logo">
+           <a href="#">
+             <img src="@/assets/logotip.png" class="logo" alt="logotip" width="100" height="100">
+           </a>
+         </div>
+       </div>
+       <div class="col-9">
+         <div class="row">
+           <div class="col-8">
+             <div class="search_header">
+               <input type="text" placeholder="Что будем искать?" class="search_form_txt">
+               <button class="searc_btn">
+                 <img class="search_input" src="@/assets/search.png" width="30" height="30">
+               </button>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+ </header>
+
 </template>
 
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
+<style>
+  header {
+    background-color: #2484c6;
+    width: 100%;
+    height: 150px;
   }
-}
+  .logo {
+    position: relative;
+    top: 8px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .search_header {
+    border: 1px solid #1a79be;
+    display: inline-flex;
+    position: relative;
+    top: 40px;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+  }
+  .search_form_txt {
+    border: none;
+    width: 400px;
+    outline: none;
+    font-size: 20px;
+    padding-right: 10px;
+    padding-left: 15px;
+  }
+  .searc_btn {
+    border: none;
+    width: 42px;
+    height: 42px;
+    position: relative;
+    background-color: white;
+    right: 5px;
+  }
+  .search_input {
+    display: flex;
+    align-items: center;
+  }
+  .search_header:focus {
+    border: 3px solid blue;
+  }
 </style>
+
+
+<script setup lang="ts">
+</script>
