@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+            nginx:
+                image: nginx:latest
+                volumes:
+                    - ./:/var/www
+                    - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+                ports:
+                    - "8000:80"
+                depends_on:
+                    - app
+                container_name: nginx
+            swagger:
+                container_name: swagger
+                build:
+                    context: .
+                    dockerfile: _docker/swagger/Dockerfile
+                volumes:
+                    - ./:/var/www
+                    - ./_docker/swagger/default.conf.template:/etc/nginx/sites-available/default.conf.template
+                    - ./swagger/lk-rusgeocom.yaml:/usr/share/nginx/html/lk-rusgeocom.yaml
+                ports:
+                    - '8760:8000'
+
+            app:
+                build:
+                    context: .
+                    dockerfile: _docker/app/Dockerfile
+                volumes:
+                    - ./:/var/www
+                container_name: app
+                environment:
+                    DB_DATABASE: libiray
+                    DB_USER: user
+                    DB_PASSWORD: root
+                    DB_HOST: postgres
+                    DB_PORT: 5432
+                depends_on:
+                    - postgres
+                ports:
+                    - '9000:9000'
+
+            postgres:
+                container_name: postgres
+                build:
+                    dockerfile: Dockerfile
+                    context: ./_docker/postgres
+                restart: always
+                environment:
+                    POSTGRES_HOST: postgres
+                    POSTGRES_DB: libiray
+                    POSTGRES_USER: user
+                    POSTGRES_PASSWORD: root
+                ports:
+                    - '5432:5432'
+
+
+
+networks:
+    private:
+        driver: bridge
+    public:
+        driver: bridge

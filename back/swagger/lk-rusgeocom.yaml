@@ -1,0 +1,240 @@
+openapi: 3.0.3
+info:
+    title: Catalog-books
+    description: Catalog-books
+    version: 1.0.0
+
+servers:
+    -   url: 'http://localhost'
+        description: Local server
+
+tags:
+    -   name: order
+        description: Действия с заявками
+
+
+paths:
+    /api/books/list:
+      get:
+        tags:
+          - order
+        summary: Получить список книг
+        security:
+          - csrfToken: [ ]
+          - cookieAuth: [ ]
+        responses:
+          '200':
+            description: Возвращает список заказов
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/BaseResponse'
+                    - type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Books'
+
+          '500':
+            description: Internal Server Error
+    /api/book/get:
+      get:
+        tags:
+          - order
+        summary: Получение данных книги
+        security:
+          - csrfToken: [ ]
+          - cookieAuth: [ ]
+        parameters:
+          -   $ref: '#/components/parameters/bookIdFilter'
+        responses:
+          '200':
+            description: Возвращает данные заказа
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/BaseResponse'
+                    - type: object
+                      properties:
+                        data:
+                          $ref: '#/components/schemas/Book'
+          '500':
+            description: Internal Server Error
+    /api/book/search:
+      post:
+        tags:
+          - order
+        summary: Поиск книг
+        security:
+          - csrfToken: [ ]
+          - cookieAuth: [ ]
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - query
+                properties:
+                  query:
+                    type: string
+                    description: Строка поиска
+                    example: "нивелир"
+        responses:
+          '200':
+            description: Возвращает список найденных товаров
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '#/components/schemas/BaseResponse'
+                    - type: object
+                      properties:
+                        data:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Books'
+          '500':
+            description: Internal Server Error
+components:
+    schemas:
+        BaseResponse:
+            type: object
+            required:
+                - success
+            properties:
+                success:
+                    description: Успешность запроса
+                    type: boolean
+                    example: true
+                data:
+                    description: Данные ответа
+                    type: array
+                errors:
+                    description: Ошибки запроса
+                    type: array
+                    minItems: 0
+                    items:
+                        type: string
+                        example: "Ошибка"
+        Books:
+          type: object
+          required:
+            - id
+            - name
+            - picturePath
+            - Author
+            - price
+          properties:
+            id:
+              description: Идентификатор книги
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: "Путешествие к центру земли"
+            picturePath:
+              type: string
+              example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-&s"
+            Author:
+              type: string
+              example: "Жуливерн И. Ч."
+            price:
+              type: string
+              example: "799р"
+        Book:
+          type: object
+          required:
+            - id
+            - name
+            - picturePath
+            - author
+            - price
+            - production
+            - yearProduction
+            - page
+            - typePreview
+            - ageBaryer
+          properties:
+            id:
+              description: Идентификатор книги
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: "Путешествие к центру земли"
+            picturePath:
+              type: string
+              example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-&s"
+            Author:
+              type: string
+              example: "Жуливерн И. Ч."
+            production:
+              type: string
+              example: "Волгоград 2022"
+            yearProduction:
+              type: string
+              example: "2002"
+            page:
+              type: integer
+              example: 193
+            typePreview:
+              type: string
+              example: "Кожанная"
+            ageBaryer:
+              type: string
+              example: "18+"
+            price:
+              type: string
+              example: "799,99"
+
+
+    responses:
+        UnauthorizedResponse:
+            description: Неавторизованный запрос
+            content:
+                application/json:
+                    schema:
+                        allOf:
+                            -   $ref: '#/components/schemas/BaseResponse'
+                            -   type: object
+                                properties:
+                                    success:
+                                        type: boolean
+                                        example: false
+                                    errors:
+                                        type: array
+                                        minItems: 1
+                                        items:
+                                            type: string
+                                            example: "Unauthorized"
+    parameters:
+        token:
+            name: token
+            in: query
+            schema:
+                type: string
+                example: "414a3c1c4cd8d2ed882f3f72ecd88f062fb0666f2c2beffe1bdd6ceeaeec8e01"
+        bookIdFilter:
+          name: bookId
+          in: query
+          schema:
+            type: integer
+            format: int32
+            example: 1
+    securitySchemes:
+        cookieAuth:
+            type: apiKey
+            in: cookie
+            name: SESSIONID
+        csrfToken:
+            type: apiKey
+            in: header
+            name: X-XSRF-TOKEN
+
+security:
+    -   cookieAuth: [ ]
+    -   csrfToken: [ ]
