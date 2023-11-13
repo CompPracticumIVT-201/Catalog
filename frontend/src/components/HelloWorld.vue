@@ -237,26 +237,8 @@
 </style>
 
 
-<script setup lang="ts">
+<script lang="ts">
 
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-  data() {
-    return {
-      searchQuery: ''
-    };
-  },
-  methods: {
-    handleSearch() {
-      console.log('Searching for:', this.searchQuery);
-    }
-  }
-});
-</script>
-
-<style scoped>
-.bg-cdeae1 {
-  background-color: #cdeae1;
-}
 </script>

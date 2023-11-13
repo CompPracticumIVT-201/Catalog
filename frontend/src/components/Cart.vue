@@ -1,11 +1,26 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  $END$
+  <div class="cart">
+
+  </div>
 </template>
 
-<style scoped>
+<script lang="ts">
+export default {
+  name: 'Cart',
+  props: {
+
+  },
+  data(){
+    return {
+
+    }
+  },
+  computed: {
+
+  }
+}
+</script>
+
+<style>
 
 </style>
