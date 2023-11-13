@@ -51,10 +51,7 @@
                     <button class="search_header_button"
                             type="submit"
                             aria-label="search">
-                      <img src="@/assets/icons8-поиск.svg"
-                           alt="poisk"
-                           width="25px"
-                           height="25px">
+                      <img src="@/assets/icons8-poisk.svg" alt="" width="25" height="25">
                     </button>
                   </label>
                 </form>
@@ -157,11 +154,12 @@
   float: left;
   color: white;
   font-size: 14px;
-  line-height: 40px;
+  line-height: 45px;
 }
 
 .search_header_input{
   position: absolute;
+  border-radius: 10px ;
   width: 636px;
 }
 
@@ -170,7 +168,7 @@
   border: 0;
   background-color: white;
   left: 585px;
-  top: 1px;
+  top: 2px
 }
 
 .info{
@@ -198,7 +196,7 @@
   display: inline-block;
   white-space: nowrap;
   outline: none;
-  border-radius: 6px;
+  border-radius: px;
   font-size: 13px;
   color: white;
   font-weight: 700;

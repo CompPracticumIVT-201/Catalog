@@ -2,6 +2,7 @@
 
 import  { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import 'material-design-icons-iconfont'
 
 import App from './App.vue'
 

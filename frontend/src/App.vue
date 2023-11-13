@@ -3,11 +3,16 @@
   <div id="app">
     <HelloWorld/>
     <vMainWrapper/>
-    <SelectItem
+<!--    <SelectItem
       :options="options"
       @select="optionSelect"
       :selected="selected"
-    />
+    />-->
+    <ul>
+      <li v-for="product in products" :key="product.id">
+        {{ product.name }} - {{ product.price }}
+      </li>
+    </ul>
     <p>Я наконецто сделал это{{selected}}</p>
 <!--    <TheCatalog
         :options="options"
@@ -22,6 +27,7 @@
 </template>
 
 <script lang="ts">
+
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import vMainWrapper from './components/MainWrapper.vue'
@@ -38,10 +44,8 @@ export default {
   data() {
     return {
       options: [
-        {name: 'Option 1',  value: 1},
-        {name: 'Option 2', value: 2},
-        {name: 'Option 3', value: 3},
-        {name: 'Option 4', value: 4},
+        {name: 'По максимальной цене',  value: 1},
+        {name: 'По минимальной цене', value: 2},
       ],
       selected: 'Select'
     }
@@ -49,6 +53,15 @@ export default {
   methods: {
     optionSelect(option){
       this.selected = option.name
+    }
+  },
+  computed: {
+    sortedProducts() {
+      if (this.sortOption === 'name') {
+        return this.products.slice().sort((a, b) => a.name.localeCompare(b.name));
+      } else if (this.sortOption === 'price') {
+        return this.products.slice().sort((a, b) => a.price - b.price);
+      }
     }
   }
 }
