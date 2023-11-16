@@ -13,7 +13,7 @@
         {{ product.name }} - {{ product.price }}
       </li>
     </ul>
-    <p>Я наконецто сделал это{{selected}}</p>
+
 <!--    <TheCatalog
         :options="options"
         @select="optionSelect"

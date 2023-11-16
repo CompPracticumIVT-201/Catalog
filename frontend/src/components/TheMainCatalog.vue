@@ -1,14 +1,10 @@
 <template>
   <div class="main-catalog">
-<!--    <SelectItem
-      :selected="selected"
-      :options="categories"
-    />-->
-    <form action="">
-      <select v-model="sortOption" style="margin-right: 1000px; box-shadow: 0px 5px 10px rgba(0, 0, 0, .3);">
-        <option value="name" selected>Выберите сортировку</option>
-        <option value="pricemax" >Сортировать максимальной</option>
-        <option value="pricemin">Сортировать минимальной</option>
+    <form class="sorting" action="">
+      <select v-model="sortOption" >
+        <option style="font-family: 'Roboto Condensed';" value="name" selected>Выберите сортировку</option>
+        <option value="pricemax" >По увеличению цены</option>
+        <option value="pricemin">По уменьшению цены</option>
       </select>
     </form>
 
@@ -138,10 +134,28 @@ export default {
 <style>
   .main-catalog{
     width: 100%;
+    height: 100%;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+
+
+  }
+  .sorting{
+    margin-left: 100px;
+    margin-bottom: 40px;
+  }
+  .sorting select{
+    width: 200px;
+    height: 23px;
+    background-color: #fcefef;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .3);
+    font-family: 'Roboto Condensed';
+  }
+  .sorting option{
+
+    font-size: 12px;
 
   }
   .v-catalog__list{
@@ -150,5 +164,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
   }
 </style>
