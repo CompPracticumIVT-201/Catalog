@@ -2,24 +2,14 @@
 <template>
   <div id="app">
     <HelloWorld/>
-    <vMainWrapper/>
-<!--    <SelectItem
-      :options="options"
-      @select="optionSelect"
-      :selected="selected"
-    />-->
+<!--    <vMainWrapper/>-->
+    <router-view></router-view>
+
     <ul>
       <li v-for="product in products" :key="product.id">
         {{ product.name }} - {{ product.price }}
       </li>
     </ul>
-
-<!--    <TheCatalog
-        :options="options"
-        @select="optionSelect"
-        :selected="selected"
-    />-->
-
 
     <TheWelcome/>
   </div>

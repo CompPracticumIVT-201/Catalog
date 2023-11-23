@@ -33,7 +33,10 @@
               </div>
               <div class="col-4">
                 <div class="header-block-btn">
-                  <div class="btn-reg"><p>Регистрация</p></div>
+
+
+                  <router-link :to="{name: 'A'}"> <button class="btn-reg"><p>Регистрация</p></button></router-link>
+
                   <div class="btn-log"><p>Вход</p></div>
                 </div>
               </div>
@@ -118,7 +121,4 @@
 
 
 <script lang="ts">
-
-import { defineComponent } from 'vue';
-
 </script>

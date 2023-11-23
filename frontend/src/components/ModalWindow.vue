@@ -2,7 +2,7 @@
   <div class="pop-wrapper">
     <div class="v-popup">
       <div class="v-popup__header">
-        <span>Popup name</span>
+        <span>{{product_data.name}}</span>
         <span>
         <i
             class="material-icons"
@@ -13,9 +13,9 @@
       <div class="v-popup__content">
         <slot></slot>
       </div>
-      <div class="v-popup__footer">
+<!--      <div class="v-popup__footer">
         <button class="close_modal" @click="closeModal">Close</button>
-      </div>
+      </div>-->
     </div>
   </div>
 
@@ -24,7 +24,14 @@
 <script>
 export default {
   name: "ModalWindow",
-  props: {},
+  props: {
+    product_data: {
+      type:Object,
+      default(){
+        return {}
+      }
+    }
+  },
   data(){
     return {
 
@@ -63,7 +70,7 @@ export default {
   padding: 16px;
   position: fixed;
   top: 70px;
-  width: 900px;
+  width: 1000px;
   height: 600px;
   background: #ffffff;
   box-shadow: 0 0 17px 0 #e7e7e7;
@@ -72,6 +79,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 440px;
+    float: right;
   }
   .v-popup__content{
     display: flex;
