@@ -8,7 +8,37 @@ const router = createRouter({
     {
       path: '/registration',
       name: 'A',
-      component: () => import('../components/Registration.vue')
+      component: () => import('../components/InDev/Registration.vue')
+    },
+    {
+      path: '/logIn',
+      name: 'B',
+      component: () => import('../components/InDev/logIn.vue')
+    },
+    {
+      path: '/Popular',
+      name: 'C',
+      component: () => import('../components/InDev/Popular.vue')
+    },
+    {
+      path: '/Reviews',
+      name: 'D',
+      component: () => import('../components/InDev/Reviews.vue')
+    },
+    {
+      path: '/Mallings',
+      name: 'E',
+      component: () => import('../components/InDev/Mallings.vue')
+    },
+    {
+      path: '/telegram',
+      name: 'G',
+      component: () => import('../components/InDev/Telegram.vue')
+    },
+    {
+      path: '/vkontakte',
+      name: 'F',
+      component: () => import('../components/InDev/Vkontakte.vue')
     },
     {
       path: '',

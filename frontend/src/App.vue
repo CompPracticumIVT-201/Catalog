@@ -1,18 +1,12 @@
-
 <template>
-  <div id="app">
+  <div id="app" style="display: flex; flex-direction: column; height: 100%">
     <HelloWorld/>
-<!--    <vMainWrapper/>-->
-    <router-view></router-view>
-
-    <ul>
-      <li v-for="product in products" :key="product.id">
-        {{ product.name }} - {{ product.price }}
-      </li>
-    </ul>
-
+    <router-view ></router-view>
     <TheWelcome/>
   </div>
+
+<!--  style="display: flex; flex-direction: column; height: 100%"-->
+
 
 </template>
 

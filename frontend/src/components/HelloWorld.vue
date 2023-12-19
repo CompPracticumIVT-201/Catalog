@@ -18,13 +18,14 @@
                 <div class="header-block">
                   <ul class="header-block-item" >
                     <li>
-                      <a href="" >Популярное</a>
+                      <router-link :to="{name: 'C'}"><a href="" >Популярное</a></router-link>
                     </li>
                     <li >
-                      <a href="">Отзывы</a>
+                      <router-link :to="{name: 'D'}"><a href="">Отзывы</a></router-link>
                     </li>
                     <li >
-                      <a href="">Рассылка</a>
+                      <router-link :to="{name: 'E'}"><a href="">Рассылка</a></router-link>
+
                     </li>
                   </ul>
                 </div>
@@ -36,8 +37,7 @@
 
 
                   <router-link :to="{name: 'A'}"> <button class="btn-reg"><p>Регистрация</p></button></router-link>
-
-                  <div class="btn-log"><p>Вход</p></div>
+                  <router-link :to="{name: 'B'}"> <button class="btn-log"><p>Вход</p></button></router-link>
                 </div>
               </div>
             </div>
@@ -91,6 +91,7 @@
     width: 102px;
     height: 36px;
     border-radius: 12px;
+    border: 1px solid #dd5a31;
   }
   .btn-reg p{
     position: absolute;
@@ -102,12 +103,13 @@
   }
   .btn-log{
     position: relative;
-    color: #ffefd0;
-    background-color: #dd5a31;
+    color: #dd5a31;
+    background-color: #ffefd0;
     width: 46px;
     height: 36px;
     border-radius: 12px;
     margin-left: 30px;
+    border: 3px solid #dd5a31;
   }
   .btn-log p{
     position: absolute;

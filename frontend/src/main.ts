@@ -4,6 +4,9 @@ import  { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import 'material-design-icons-iconfont'
 import router from './router'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://localhost:8000/api/';
 
 import App from './App.vue'
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="pop-wrapper">
+  <div class="pop-wrapper" @click="closeModalOutside">
     <div class="v-popup">
       <div class="v-popup__header">
         <span>{{product_data.name}}</span>
@@ -7,46 +7,46 @@
         <i
             class="material-icons"
             @click="closeModal"
+            style="cursor: pointer;"
         >close</i>
       </span>
       </div>
       <div class="v-popup__content">
         <slot></slot>
       </div>
-<!--      <div class="v-popup__footer">
-        <button class="close_modal" @click="closeModal">Close</button>
-      </div>-->
     </div>
   </div>
-
 </template>
-
 <script>
 export default {
   name: "ModalWindow",
   props: {
     product_data: {
-      type:Object,
-      default(){
+      type: Object,
+      default() {
         return {}
       }
     }
   },
-  data(){
-    return {
-
-    }
-  },
-  computed: {
-
+  data() {
+    return {}
   },
   methods: {
-    closeModal(){
-      this.$emit('closeModal')
-    }
+    closeModal() {
+      this.$emit('closeModal');
+    },
+    closeModalOutside(event) {
+      // Проверяем, является ли цель клика модальным окном или его потомком
+      const modal = this.$el.querySelector('.v-popup');
+      if (!modal.contains(event.target)) {
+        // Если клик был совершен вне модального окна, закрываем его
+        this.closeModal();
+      }
+    },
+
+
   }
 }
-
 </script>
 
 <style>
@@ -70,7 +70,7 @@ export default {
   padding: 16px;
   position: fixed;
   top: 70px;
-  width: 1000px;
+  width: 1100px;
   height: 600px;
   background: #ffffff;
   box-shadow: 0 0 17px 0 #e7e7e7;
